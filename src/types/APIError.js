@@ -47,6 +47,7 @@ export default class APIError extends Error {
     const ErrorConstructor = this || APIError; // in case this isn't bound.
     let log = console.error;
     log(err.toString());
+    log(JSON.stringify(err));
     if(err instanceof APIError) {
       return err;
     }

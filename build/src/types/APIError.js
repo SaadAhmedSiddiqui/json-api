@@ -86,6 +86,7 @@ var APIError = (function (_Error) {
       var ErrorConstructor = this || APIError; // in case this isn't bound.
       var log = console.error;
       log(err.toString());
+      log(JSON.stringify(err));
       if (err instanceof APIError) {
         return err;
       }

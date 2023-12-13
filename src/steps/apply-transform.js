@@ -49,6 +49,13 @@ function transform(resource, req, res, transformMode, registry) {
   }
 
   // Allow user to return a Promise or a value
-  let transformed = transformFn(resource, req, res, superFn);
+  let transformed;
+  try {
+    transformed = transformFn(resource, req, res, superFn);
+  } catch(err){
+    console.log("saad message caught global error");
+    console.err(err)
+    return Promise.reject(err);
+  }
   return Promise.resolve(transformed);
 }

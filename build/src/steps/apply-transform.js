@@ -64,7 +64,13 @@ function transform(resource, req, res, transformMode, registry) {
   }
 
   // Allow user to return a Promise or a value
-  var transformed = transformFn(resource, req, res, superFn);
+  var transformed = undefined;
+  try {
+    transformed = transformFn(resource, req, res, superFn);
+  } catch (err) {
+    console.log("saad message caught global error");
+    return _q.Promise.reject(err);
+  }
   return _q.Promise.resolve(transformed);
 }
 module.exports = exports["default"];
